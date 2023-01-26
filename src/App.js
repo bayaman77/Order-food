@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import "./App.css";
+import Basket from "./components/basket/Basket";
+import Header from "./components/header/Header";
+import Meals from "./components/meals/Meals";
+import Summary from "./components/summary/Summary";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Content>
+        <Summary />
+        <Meals />
+        <Basket />
+      </Content>
     </div>
   );
-}
+};
 
 export default App;
+
+const Content = styled.div`
+margin-top: 101px;
+`
