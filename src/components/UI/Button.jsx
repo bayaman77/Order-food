@@ -1,7 +1,17 @@
 import styled from "styled-components";
 
-const Button = ({ children, variant = "contained", borderStyle='rounded' }) => {
-  return <StyledButton variant={variant} borderStyle={borderStyle}> {children}</StyledButton>;
+const Button = ({
+  children,
+  variant = "contained",
+  borderStyle = "rounded",
+  ...rest
+}) => {
+  return (
+    <StyledButton {...rest} variant={variant} borderStyle={borderStyle}>
+      {" "}
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
@@ -16,8 +26,7 @@ const getColor = (props) => {
     props.variant === "contained" ? "white" : "rgb(126, 42, 10)";
 };
 const getBorderRadius = (props) => {
-  return (props) =>
-    props.borderStyle === "rounded" ? "25px" : "6px";
+  return (props) => (props.borderStyle === "rounded" ? "25px" : "6px");
 };
 
 const StyledButton = styled.button`

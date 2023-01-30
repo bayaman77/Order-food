@@ -2,18 +2,22 @@ import styled from "styled-components";
 
 import MealItemForm from "./MealItemForm";
 
-const MealItem =  ({meal})=>{
-    return (
-      <Container>
-        <StyledItemInfo>
-          <StyledTitle>{meal.title}</StyledTitle>
-          <p>{meal.description}</p>
-          <span>${meal.price}</span>
-        </StyledItemInfo>
-        <MealItemForm id={"amount" + Math.random().toString()}/>
-      </Container>
-    );
-}
+const MealItem = ({ meal }) => {
+  return (
+    <Container>
+      <StyledItemInfo>
+        <StyledTitle>{meal.title}</StyledTitle>
+        <p>{meal.description}</p>
+        <span>${meal.price}</span>
+      </StyledItemInfo>
+      <MealItemForm
+        id={meal.id}
+        title={meal.title}
+        price={meal.price}
+      />
+    </Container>
+  );
+};
 
 export default MealItem;
 
@@ -54,5 +58,5 @@ const StyledTitle = styled.h4`
   font-size: 18px;
   line-height: 27px;
   color: #222222;
- margin: 0;
+  margin: 0;
 `;

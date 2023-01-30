@@ -32,10 +32,7 @@ body{
 
 
 /* Стрелки */
-
 ::-webkit-scrollbar-button {
-  background: #383838;;
-  background-color: #383838;;
+  display: none;
 }
-
 
