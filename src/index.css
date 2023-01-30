@@ -14,3 +14,28 @@ body{
   background: #383838;
 }
 
+
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+  width: 12px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #383838;
+  border-radius: 9em;
+
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color:  #d74910;;
+  border-radius: 9em;
+}
+
+
+/* Стрелки */
+
+::-webkit-scrollbar-button {
+  background: #383838;;
+  background-color: #383838;;
+}
+
+
