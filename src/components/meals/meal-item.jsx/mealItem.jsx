@@ -11,7 +11,7 @@ const MealItem = ({ meal }) => {
         <span>${meal.price}</span>
       </StyledItemInfo>
       <MealItemForm
-        id={meal.id}
+        id={meal._id}
         title={meal.title}
         price={meal.price}
       />

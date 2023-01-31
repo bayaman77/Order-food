@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
-import Button from "../UI/Button";
 import BasketButton from "./BasketButton";
 
 const Header = ({ onShowBasket }) => {

@@ -6,10 +6,23 @@ import BasketItem from "./BasketItem";
 import TotalAmount from "./TotalAmount";
 
 const Basket = ({ onClose }) => {
-  const { items } = useContext(BasketContext);
+  const { items, updateBasketitem, deleteBasketitem } = useContext(BasketContext);
+
 
   const getTotalPrice = () => {
-    return items.reduce((sum, { price, amount }) => sum += price * amount, 0);
+    return items.reduce((sum, { price, amount }) => (sum += price * amount), 0);
+  };
+
+  const decrement = (id, amount) => {
+    if (amount > 1) {
+      updateBasketitem({ amount: amount - 1, id: id });
+    }else{
+      deleteBasketitem(id)
+    }
+  };
+
+  const increment = (id, amount) => {
+    updateBasketitem({ amount: amount + 1, id: id });
   };
 
   return (
@@ -19,11 +32,12 @@ const Basket = ({ onClose }) => {
           <FixedHeigthContainer>
             {items.map((item) => (
               <BasketItem
+                increment={() => increment(item._id, item.amount)}
+                decrement={() => decrement(item._id, item.amount)}
                 title={item.title}
                 price={item.price}
                 amount={item.amount}
-                id={item.id}
-                key={item.id}
+                key={item._id}
               />
             ))}
           </FixedHeigthContainer>

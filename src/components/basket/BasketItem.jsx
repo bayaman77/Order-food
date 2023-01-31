@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { BasketContext } from "../../store/BasketContext";
 import Button from "../UI/Button";
 
-const BasketItem = ({ title, price, amount, id }) => {
-  
-  const { increment, decrement } = useContext(BasketContext);
+const BasketItem = ({ title, price, amount, increment, decrement }) => {
 
   return (
     <Container>
@@ -19,14 +16,14 @@ const BasketItem = ({ title, price, amount, id }) => {
           <Button
             borderStyle="sqaured"
             variant="outlined"
-            onClick={() => decrement(id)}
+            onClick={decrement}
           >
             -
           </Button>
           <Button
             borderStyle="sqaured"
             variant="outlined"
-            onClick={() => increment(id)}
+            onClick={increment}
           >
             +
           </Button>

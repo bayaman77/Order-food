@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 
 import styled from "styled-components";
 
@@ -19,8 +20,15 @@ const StyledBackdrop = styled.div`
 const Modal = ({ children, onClose }) => {
   return (
     <>
-      <Backdrop onClose={onClose}/>
-      <StyledModalContent onClose={onClose}>{children}</StyledModalContent>
+      {createPortal(
+        <Backdrop onClose={onClose} />,
+        document.getElementById("backdrop")
+      )}
+
+      {createPortal(
+        <StyledModalContent onClose={onClose}>{children}</StyledModalContent>,
+        document.getElementById("modal")
+      )}
     </>
   );
 };

@@ -31,3 +31,24 @@ export default App;
 const Content = styled.div`
   margin-top: 101px;
 `;
+
+/*
+
+GET /foods
+headers: {userID: 'your_name'}
+
+GET /basket
+headers: {userID: 'your_name'}
+
+POST /foods/:foodId/addToBasket
+BODY: { amount: number }
+headers: {userID: 'your_name'}
+
+DELETE /basketItem/:id/delete
+headers: {userID: 'your_name'}
+
+PUT /basketItem/:id/update
+BODY: { amount: number }
+headers: {userID: 'your_name'}
+
+*/
