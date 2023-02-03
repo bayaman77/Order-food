@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import Button from "../UI/Button";
 
 const TotalAmount = ({ price, onClose, onOrder }) => {
-    const orderBtn = price > 0 ? <Button onClick={onOrder}>Order</Button> : null
-    const fixedPrice = price.toFixed(2)
+
+    const orderBtn = useCallback(() => price > 0 ? <Button onClick={onOrder}>Order</Button> : null,[onOrder, price])
+    
+    const fixedPrice = useMemo(() => price.toFixed(2), [price]) 
   return (
     <div style={{ paddingTop: 'px'}}>
       <InfoContainer>
@@ -16,7 +18,7 @@ const TotalAmount = ({ price, onClose, onOrder }) => {
         <Button variant="outlined" onClick={onClose}>
           Close
         </Button>
-        {orderBtn}
+        {orderBtn()}
       </ActionButtonsContainer>
     </div>
   );

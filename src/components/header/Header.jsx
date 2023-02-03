@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
 import BasketButton from "./BasketButton";
@@ -7,23 +7,23 @@ const Header = ({ onShowBasket }) => {
   const { items } = useContext(BasketContext);
   const [animationClass, setAnimationClass] = useState("");
 
-  const calculateTotalAmount = () => {
+  const calculateTotalAmount = useCallback(() => {
     const sum = items.reduce((s, item) => {
       return s + item.amount;
     }, 0);
     return sum;
-  };
+  }, [items]);
 
   useEffect(() => {
     setAnimationClass("bump");
 
-    const id =  setTimeout(() => {
-      setAnimationClass('')
-    }, 300)
+    const id = setTimeout(() => {
+      setAnimationClass("");
+    }, 300);
 
     return () => {
-      clearTimeout(id)
-    }
+      clearTimeout(id);
+    };
   }, [items]);
 
   return (

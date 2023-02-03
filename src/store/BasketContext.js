@@ -24,7 +24,6 @@ export const BasketProvider = ({ children }) => {
 
   const addToBasket = async (newItem) => {
     try {
-      console.log(newItem);
       const response = await fetchAPI(`foods/${newItem.id}/addToBasket`, {
         method: "POST",
         body: { amount: newItem.amount },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import styled from "styled-components";
 import { fetchAPI } from "../../lib/fetchApi";
 import MealItem from "./meal-item.jsx/MealItem";
@@ -6,11 +6,11 @@ import MealItem from "./meal-item.jsx/MealItem";
 const Meals = () => {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true);
 
   const getMeals = async () => {
     try {
-      setLoading(false)
+      setLoading(false);
 
       const response = await fetchAPI("foods");
 
@@ -19,7 +19,7 @@ const Meals = () => {
       console.log(error);
       setError("Failed to load meals");
     }
-  };
+  }
 
   useEffect(() => {
     getMeals();
@@ -28,7 +28,7 @@ const Meals = () => {
   return (
     <Card>
       {isLoading && !error && <p>Loading...</p>}
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <ul>
         {meals.map((meal) => {
           return <MealItem meal={meal} key={meal._id} />;
@@ -38,7 +38,7 @@ const Meals = () => {
   );
 };
 
-export default Meals;
+export default memo(Meals);
 
 const Card = styled.div`
   background: #ffffff;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
 import Modal from "../UI/Modal";
@@ -6,24 +6,30 @@ import BasketItem from "./BasketItem";
 import TotalAmount from "./TotalAmount";
 
 const Basket = ({ onClose }) => {
-  const { items, updateBasketitem, deleteBasketitem } = useContext(BasketContext);
+  const { items, updateBasketitem, deleteBasketitem } =
+    useContext(BasketContext);
 
-
-  const getTotalPrice = () => {
+  const getTotalPrice = useCallback(() => {
     return items.reduce((sum, { price, amount }) => (sum += price * amount), 0);
-  };
+  }, [items]);
 
-  const decrement = (id, amount) => {
-    if (amount > 1) {
-      updateBasketitem({ amount: amount - 1, id: id });
-    }else{
-      deleteBasketitem(id)
-    }
-  };
+  const decrement = useCallback(
+    (id, amount) => {
+      if (amount > 1) {
+        updateBasketitem({ amount: amount - 1, id: id });
+      } else {
+        deleteBasketitem(id);
+      }
+    },
+    [updateBasketitem, deleteBasketitem]
+  );
 
-  const increment = (id, amount) => {
-    updateBasketitem({ amount: amount + 1, id: id });
-  };
+  const increment = useCallback(
+    (id, amount) => {
+      updateBasketitem({ amount: amount + 1, id: id });
+    },
+    [updateBasketitem]
+  );
 
   return (
     <Modal onClose={onClose}>

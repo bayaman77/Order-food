@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import Basket from "./components/basket/Basket";
@@ -10,9 +10,9 @@ import { BasketProvider } from "./store/BasketContext";
 const App = () => {
   const [isBasketVisible, setBasketVisible] = useState(false);
 
-  const showBasketHandler = () => {
+  const showBasketHandler = useCallback(() => {
     setBasketVisible((prev) => !prev);
-  };
+  }, []);
 
   return (
     <BasketProvider>
